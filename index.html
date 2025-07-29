@@ -69,6 +69,7 @@
             text-decoration: none;
             color: var(--black);
             position: relative;
+            z-index: 101;
         }
         
         .logo span {
@@ -457,6 +458,10 @@
             letter-spacing: 1px;
         }
         
+        .newsletter-form input:focus {
+            outline: none;
+        }
+        
         .newsletter-form button {
             background-color: transparent;
             color: var(--white);
@@ -668,6 +673,26 @@
                 visibility: visible;
             }
             
+            /* Mobile nav icons */
+            .mobile-nav-icons {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 2rem;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(0,0,0,0.1);
+            }
+            
+            .mobile-nav-icons a {
+                color: var(--black);
+                font-size: 1.2rem;
+            }
+            
+            /* Hide desktop nav icons on mobile */
+            .nav-icons {
+                display: none;
+            }
+            
             /* Hero adjustments */
             .hero {
                 height: 80vh;
@@ -730,6 +755,15 @@
             footer {
                 padding: 4rem 0 2rem;
             }
+            
+            nav {
+                padding: 100px 25px 40px;
+            }
+        }
+        
+        /* Body scroll lock */
+        body.no-scroll {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -747,6 +781,13 @@
                     <li><a href="#">Couture</a></li>
                     <li><a href="#">Journal</a></li>
                 </ul>
+                
+                <!-- Mobile Navigation Icons -->
+                <div class="mobile-nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                </div>
             </nav>
             
             <div class="nav-icons">
@@ -889,7 +930,7 @@
             <h2>Join the Zenthrova Circle</h2>
             <p>Subscribe to receive exclusive previews, private event invitations, and insights into our craftsmanship process.</p>
             <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email address">
+                <input type="email" placeholder="Enter your email address" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
@@ -1021,6 +1062,17 @@
             productCards.forEach(card => {
                 card.style.transition = 'all 0.8s ease 0.2s';
                 observer.observe(card);
+            });
+            
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                if (email) {
+                    alert(`Thank you for subscribing with ${email}! You'll receive our updates soon.`);
+                    this.reset();
+                }
             });
         });
     </script>
