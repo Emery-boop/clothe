@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenthrova | Luxury Clothing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #FFFFFF;
+            --gold: #D4AF37;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333333;
+            --text-color: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Header & Navigation - FIXED */
+        header {
+            background-color: var(--white);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 30px rgba(0,0,0,0.05);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem; /* Added for better spacing */
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-decoration: none;
+            color: var(--black);
+            position: relative;
+        }
+        
+        .logo span {
+            font-weight: 300;
+            letter-spacing: 5px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem; /* Reduced from 2.5rem */
+            margin: 0 1rem; /* Added for better spacing */
+        }
+        
+        nav a {
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.85rem; /* Slightly smaller font */
+            font-weight: 400;
+            letter-spacing: 1px; /* Reduced from 2px */
+            text-transform: uppercase;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            white-space: nowrap; /* Prevent wrapping */
+        }
+        
+        nav a:hover {
+            color: var(--dark-gray);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--black);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-icons a {
+            color: var(--black);
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-icons a:hover {
+            color: var(--dark-gray);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.3s;
+        }
+        
+        .hero-btn {
+            background-color: var(--black);
+            color: var(--white);
+            border: 1px solid var(--black);
+            padding: 1rem 3rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.6s;
+        }
+        
+        .hero-btn:hover {
+            background-color: transparent;
+            color: var(--black);
+        }
+        
+        /* Collection Section */
+        .section-title {
+            text-align: center;
+            padding: 6rem 0 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            letter-spacing: 4px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 1rem auto 0;
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+        
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            padding: 0 0 6rem;
+        }
+        
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+            background-color: var(--light-gray);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .collection-card:hover {
+            transform: translateY(-15px);
+        }
+        
+        .collection-card img {
+            width: 100%;
+            height: 85%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .collection-card:hover img {
+            transform: scale(1.03);
+        }
+        
+        .card-content {
+            padding: 1.8rem;
+            background: var(--white);
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .card-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: 1px;
+        }
+        
+        /* Featured Products */
+        .featured {
+            background-color: var(--light-gray);
+            padding: 6rem 0;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+        
+        .product-img {
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.8rem;
+            text-align: center;
+        }
+        
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .product-info p {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: 1px;
+        }
+        
+        /* Brand Story */
+        .brand-story {
+            display: flex;
+            min-height: 600px;
+            background-color: var(--white);
+            margin: 6rem 0;
+        }
+        
+        .story-content {
+            flex: 1;
+            padding: 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--black);
+            color: var(--white);
+        }
+        
+        .story-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .story-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 1px;
+            background: var(--white);
+        }
+        
+        .story-content p {
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+            line-height: 1.8;
+            max-width: 600px;
+            font-size: 1.1rem;
+        }
+        
+        .story-image {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--white);
+            padding-bottom: 10px;
+            justify-content: space-between;
+        }
+        
+        .newsletter-form input {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            width: 80%;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: var(--medium-gray);
+            letter-spacing: 1px;
+        }
+        
+        .newsletter-form button {
+            background-color: transparent;
+            color: var(--white);
+            border: none;
+            padding: 0;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            color: var(--medium-gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 6rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: var(--white);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 1.2rem;
+        }
+        
+        .footer-col ul li a {
+            color: var(--medium-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--medium-gray);
+            color: var(--medium-gray);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--white);
+            border-color: var(--white);
+            color: var(--black);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .brand-story {
+                flex-direction: column;
+            }
+            
+            .story-content {
+                padding: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            /* Mobile Navigation Fixes */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--white);
+                z-index: 100;
+                padding: 120px 30px 50px;
+                transition: right 0.4s ease-in-out;
+                box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+                overflow-y: auto;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                margin: 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            nav a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1rem;
+                letter-spacing: 1.5px;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+                white-space: normal;
+            }
+            
+            nav a:hover::after {
+                width: 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: relative;
+                width: 30px;
+                height: 30px;
+            }
+            
+            .mobile-menu i {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: opacity 0.3s ease;
+            }
+            
+            .mobile-menu .fa-bars {
+                opacity: 1;
+            }
+            
+            .mobile-menu .fa-times {
+                opacity: 0;
+            }
+            
+            .mobile-menu.active .fa-bars {
+                opacity: 0;
+            }
+            
+            .mobile-menu.active .fa-times {
+                opacity: 1;
+            }
+            
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 99;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.4s ease;
+            }
+            
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            /* Hero adjustments */
+            .hero {
+                height: 80vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .story-content {
+                padding: 3rem;
+            }
+            
+            .footer-grid {
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                padding: 4rem 0 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .collection-card {
+                height: 500px;
+            }
+            
+            .product-img {
+                height: 300px;
+            }
+            
+            .brand-story {
+                margin: 4rem 0;
+            }
+            
+            .story-content {
+                padding: 2rem;
+            }
+            
+            .newsletter {
+                padding: 4rem 0;
+            }
+            
+            footer {
+                padding: 4rem 0 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">ZENTHROVA<span>.</span></a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">Ready-to-Wear</a></li>
+                    <li><a href="#">Couture</a></li>
+                    <li><a href="#">Journal</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+            </div>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="overlay"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Timeless Elegance, Modern Luxury</h1>
+            <p>Zenthrova represents the pinnacle of craftsmanship and design. Each garment is meticulously created to embody sophistication and enduring style.</p>
+            <button class="hero-btn">Explore Collection</button>
+        </div>
+    </section>
+    
+    <!-- Collection Section -->
+    <section class="container">
+        <div class="section-title">
+            <h2>New Arrivals</h2>
+            <p>Discover our latest collection of meticulously crafted garments</p>
+        </div>
+        
+        <div class="collection-grid">
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Luxury Suit">
+                <div class="card-content">
+                    <h3>Signature Tailored Suit</h3>
+                    <p>Handcrafted from premium Italian wool</p>
+                    <div class="price">$1,850</div>
+                </div>
+            </div>
+            
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Evening Gown">
+                <div class="card-content">
+                    <h3>Silk Chiffon Evening Gown</h3>
+                    <p>Exquisite hand-beaded detailing</p>
+                    <div class="price">$3,200</div>
+                </div>
+            </div>
+            
+            <div class="collection-card">
+                <img src="https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Cashmere Coat">
+                <div class="card-content">
+                    <h3>Double-Breasted Cashmere Coat</h3>
+                    <p>Luxuriously soft cashmere</p>
+                    <div class="price">$2,400</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section class="featured">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Pieces</h2>
+                <p>Curated selection of our most exclusive designs</p>
+            </div>
+            
+            <div class="featured-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1543083477-4f785aeafaa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Silk Blouse">
+                    </div>
+                    <div class="product-info">
+                        <h3>Silk Charmeuse Blouse</h3>
+                        <p>Hand-finished with mother-of-pearl buttons</p>
+                        <div class="product-price">$780</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Leather Jacket">
+                    </div>
+                    <div class="product-info">
+                        <h3>Artisan Leather Jacket</h3>
+                        <p>Vegetable-tanned Italian leather</p>
+                        <div class="product-price">$1,950</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Evening Dress">
+                    </div>
+                    <div class="product-info">
+                        <h3>Velvet Evening Dress</h3>
+                        <p>Bias-cut with hand-embroidered details</p>
+                        <div class="product-price">$2,150</div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Tailored Trousers">
+                    </div>
+                    <div class="product-info">
+                        <h3>Wool Crepe Tailored Trousers</h3>
+                        <p>High-waisted with satin detailing</p>
+                        <div class="product-price">$650</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Brand Story -->
+    <section class="brand-story">
+        <div class="story-content">
+            <div class="container">
+                <h2>The Zenthrova Legacy</h2>
+                <p>Founded in Milan in 1987, Zenthrova represents the pinnacle of Italian craftsmanship fused with contemporary design sensibilities. Each garment is a testament to our heritage of excellence.</p>
+                <p>Our atelier employs master tailors with decades of experience, utilizing techniques passed down through generations while innovating for the modern wardrobe.</p>
+                <p>We source only the finest materials from around the world - silks from Como, cashmere from Mongolia, and wools from the Scottish Highlands - ensuring unparalleled quality and luxury.</p>
+                <button class="hero-btn" style="margin-top: 2rem;">Our Craftsmanship</button>
+            </div>
+        </div>
+        <div class="story-image"></div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Join the Zenthrova Circle</h2>
+            <p>Subscribe to receive exclusive previews, private event invitations, and insights into our craftsmanship process.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Zenthrova</h3>
+                    <p style="color: var(--medium-gray); margin-bottom: 2rem; max-width: 300px;">Elevating luxury fashion through timeless design, impeccable craftsmanship, and sustainable practices.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Collections</h3>
+                    <ul>
+                        <li><a href="#">Spring/Summer 2023</a></li>
+                        <li><a href="#">Autumn/Winter 2023</a></li>
+                        <li><a href="#">Couture</a></li>
+                        <li><a href="#">Bridal</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Client Services</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Personal Shopping</a></li>
+                        <li><a href="#">Alterations</a></li>
+                        <li><a href="#">Delivery & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Ateliers</h3>
+                    <ul>
+                        <li><a href="#">Milan</a></li>
+                        <li><a href="#">Paris</a></li>
+                        <li><a href="#">New York</a></li>
+                        <li><a href="#">Tokyo</a></li>
+                        <li><a href="#">London</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Zenthrova. All rights reserved. Crafted with excellence in Italy</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const navMenu = document.querySelector('nav');
+            const overlay = document.querySelector('.overlay');
+            
+            mobileMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
+            
+            overlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+                this.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+            
+            // Close menu when clicking a nav link
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                });
+            });
+            
+            // Hero text animation
+            const heroText = document.querySelector('.hero h1');
+            const heroParagraph = document.querySelector('.hero p');
+            const heroButton = document.querySelector('.hero-btn');
+            
+            // Apply initial styles
+            heroText.style.opacity = '1';
+            heroText.style.transform = 'translateY(0)';
+            
+            setTimeout(() => {
+                heroParagraph.style.opacity = '1';
+                heroParagraph.style.transform = 'translateY(0)';
+                
+                setTimeout(() => {
+                    heroButton.style.opacity = '1';
+                    heroButton.style.transform = 'translateY(0)';
+                }, 300);
+            }, 300);
+            
+            // Collection card animation on scroll
+            const collectionCards = document.querySelectorAll('.collection-card');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            collectionCards.forEach(card => {
+                card.style.transition = 'all 0.8s ease';
+                observer.observe(card);
+            });
+            
+            productCards.forEach(card => {
+                card.style.transition = 'all 0.8s ease 0.2s';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
