@@ -44,7 +44,7 @@
             padding: 0 40px;
         }
         
-        /* Header & Navigation - FIXED */
+        /* Header & Navigation */
         header {
             background-color: var(--white);
             padding: 1.5rem 0;
@@ -59,17 +59,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 2rem; /* Added for better spacing */
         }
         
         .logo {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            letter-spacing: 3px;
+            letter-spacing: 1px;
             text-decoration: none;
             color: var(--black);
             position: relative;
-            z-index: 101;
         }
         
         .logo span {
@@ -80,21 +78,19 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem; /* Reduced from 2.5rem */
-            margin: 0 1rem; /* Added for better spacing */
+            gap: 2.5rem;
         }
         
         nav a {
             color: var(--black);
             text-decoration: none;
-            font-size: 0.85rem; /* Slightly smaller font */
+            font-size: 0.9rem;
             font-weight: 400;
-            letter-spacing: 1px; /* Reduced from 2px */
+            letter-spacing: 2px;
             text-transform: uppercase;
             position: relative;
             transition: all 0.3s ease;
             padding: 5px 0;
-            white-space: nowrap; /* Prevent wrapping */
         }
         
         nav a:hover {
@@ -179,9 +175,6 @@
             letter-spacing: 3px;
             line-height: 1.1;
             font-weight: 300;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
         }
         
         .hero p {
@@ -189,9 +182,6 @@
             margin-bottom: 2.5rem;
             max-width: 500px;
             letter-spacing: 0.5px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease 0.3s;
         }
         
         .hero-btn {
@@ -206,9 +196,6 @@
             cursor: pointer;
             transition: all 0.4s ease;
             display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease 0.6s;
         }
         
         .hero-btn:hover {
@@ -250,8 +237,6 @@
             height: 600px;
             background-color: var(--light-gray);
             transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
         }
         
         .collection-card:hover {
@@ -313,8 +298,6 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
         }
         
         .product-card:hover {
@@ -458,10 +441,6 @@
             letter-spacing: 1px;
         }
         
-        .newsletter-form input:focus {
-            outline: none;
-        }
-        
         .newsletter-form button {
             background-color: transparent;
             color: var(--white);
@@ -603,7 +582,6 @@
             nav ul {
                 flex-direction: column;
                 gap: 0;
-                margin: 0;
             }
             
             nav ul li {
@@ -617,7 +595,6 @@
                 font-size: 1rem;
                 letter-spacing: 1.5px;
                 border-bottom: 1px solid rgba(0,0,0,0.05);
-                white-space: normal;
             }
             
             nav a:hover::after {
@@ -671,26 +648,6 @@
             .overlay.active {
                 opacity: 1;
                 visibility: visible;
-            }
-            
-            /* Mobile nav icons */
-            .mobile-nav-icons {
-                display: flex;
-                justify-content: center;
-                gap: 2rem;
-                margin-top: 2rem;
-                padding-top: 2rem;
-                border-top: 1px solid rgba(0,0,0,0.1);
-            }
-            
-            .mobile-nav-icons a {
-                color: var(--black);
-                font-size: 1.2rem;
-            }
-            
-            /* Hide desktop nav icons on mobile */
-            .nav-icons {
-                display: none;
             }
             
             /* Hero adjustments */
@@ -755,15 +712,6 @@
             footer {
                 padding: 4rem 0 2rem;
             }
-            
-            nav {
-                padding: 100px 25px 40px;
-            }
-        }
-        
-        /* Body scroll lock */
-        body.no-scroll {
-            overflow: hidden;
         }
     </style>
 </head>
@@ -781,13 +729,6 @@
                     <li><a href="#">Couture</a></li>
                     <li><a href="#">Journal</a></li>
                 </ul>
-                
-                <!-- Mobile Navigation Icons -->
-                <div class="mobile-nav-icons">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="#"><i class="fas fa-user"></i></a>
-                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
-                </div>
             </nav>
             
             <div class="nav-icons">
@@ -930,7 +871,7 @@
             <h2>Join the Zenthrova Circle</h2>
             <p>Subscribe to receive exclusive previews, private event invitations, and insights into our craftsmanship process.</p>
             <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email address" required>
+                <input type="email" placeholder="Enter your email address">
                 <button type="submit">Subscribe</button>
             </form>
         </div>
@@ -1027,17 +968,18 @@
             const heroParagraph = document.querySelector('.hero p');
             const heroButton = document.querySelector('.hero-btn');
             
-            // Apply initial styles
-            heroText.style.opacity = '1';
-            heroText.style.transform = 'translateY(0)';
-            
             setTimeout(() => {
-                heroParagraph.style.opacity = '1';
-                heroParagraph.style.transform = 'translateY(0)';
+                heroText.style.opacity = '1';
+                heroText.style.transform = 'translateY(0)';
                 
                 setTimeout(() => {
-                    heroButton.style.opacity = '1';
-                    heroButton.style.transform = 'translateY(0)';
+                    heroParagraph.style.opacity = '1';
+                    heroParagraph.style.transform = 'translateY(0)';
+                    
+                    setTimeout(() => {
+                        heroButton.style.opacity = '1';
+                        heroButton.style.transform = 'translateY(0)';
+                    }, 300);
                 }, 300);
             }, 300);
             
@@ -1055,24 +997,17 @@
             }, { threshold: 0.1 });
             
             collectionCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
                 card.style.transition = 'all 0.8s ease';
                 observer.observe(card);
             });
             
             productCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
                 card.style.transition = 'all 0.8s ease 0.2s';
                 observer.observe(card);
-            });
-            
-            // Newsletter form submission
-            const newsletterForm = document.querySelector('.newsletter-form');
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input').value;
-                if (email) {
-                    alert(`Thank you for subscribing with ${email}! You'll receive our updates soon.`);
-                    this.reset();
-                }
             });
         });
     </script>
